@@ -1,0 +1,27 @@
+<div class="flexBox" ngDraggable (started)="onDragBegin($event)" [position]="{ x: initialX, y: initialY }" [ngStyle]="{'width' : width, 'zIndex' : currentZ}" *ngIf="!isMinimised">
+    <div class="ui-titlebar" [ngStyle]="{'background': headerColor, 'width' : width}">
+        <div class="ui-titletext" [ngStyle]="{'color': titleColor}">{{title}}</div>
+        <div class="ui-titlecontrols">
+            <button class="ui-btn minimize" (click)="minimise()" (mouseover)="hoverMin=true" (mouseleave)="hoverMin=false" [ngStyle]="{'background': hoverMin ? buttonHoverColor : ''}">
+                <svg [ngStyle]="{'fill': iconsColor}" x="0px" y="0px" viewBox="0 0 10.2 1"><rect x="0" y="50%" width="10.2" height="1" /></svg>
+            </button><button class="ui-btn close" (mouseover)="hover=true" (mouseleave)="hover=false" [ngStyle]="{'background': hover ? closeHoverColor : ''}">
+                <svg [ngStyle]="{'fill': iconsColor}" viewBox="0 0 10 10"><polygon points="10.2,0.7 9.5,0 5.1,4.4 0.7,0 0,0.7 4.4,5.1 0,9.5 0.7,10.2 5.1,5.8 9.5,10.2 10.2,9.5 5.8,5.1" /></svg>
+            </button>
+        </div>
+    </div>
+    <div [ngStyle]="{'width' : width, 'height': height, 'background': contentBackgroundColor}" class="contentBox">
+        <ng-content></ng-content>
+    </div>
+</div>
+<div class="minimized"  *ngIf="isMinimised" [ngStyle]="{'left' : leftPlacement, 'zIndex' : 1000}">
+    <div class="ui-titlebar" [ngStyle]="{'background': headerColor, 'width' : '200px'}">
+        <div class="ui-titletext" [ngStyle]="{'color': titleColor}">{{title}}</div>
+        <div class="ui-titlecontrolsMin">
+            <button class="ui-btn maximize" (click)="minimise()" (mouseover)="hoverMax=true" (mouseleave)="hoverMax=false" [ngStyle]="{'background': hoverMax ? buttonHoverColor : ''}">
+                <svg [ngStyle]="{'fill': iconsColor}" viewBox="0 0 10 10"><path d="M0,0v10h10V0H0z M9,9H1V1h8V9z" /></svg>
+            </button><button class="ui-btn close" (mouseover)="hover=true" (mouseleave)="hover=false" [ngStyle]="{'background': hover ? closeHoverColor : ''}">
+                <svg [ngStyle]="{'fill': iconsColor}" viewBox="0 0 10 10"><polygon points="10.2,0.7 9.5,0 5.1,4.4 0.7,0 0,0.7 4.4,5.1 0,9.5 0.7,10.2 5.1,5.8 9.5,10.2 10.2,9.5 5.8,5.1" /></svg>
+            </button>
+        </div>
+    </div>
+</div>

@@ -31,6 +31,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -99,9 +100,41 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
             ],
             "scripts": []
+          }
+        }
+      }
+    },
+    "min-max-popup": {
+      "projectType": "library",
+      "root": "projects/min-max-popup",
+      "sourceRoot": "projects/min-max-popup/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/min-max-popup/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/min-max-popup/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/min-max-popup/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/min-max-popup/src/test.ts",
+            "tsConfig": "projects/min-max-popup/tsconfig.spec.json",
+            "karmaConfig": "projects/min-max-popup/karma.conf.js"
           }
         }
       }

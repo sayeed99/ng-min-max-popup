@@ -1,0 +1,69 @@
+.ui-titlebar {
+  display: flex;
+  width: 400px;
+  height: 32px;
+  user-select: none;
+  cursor: default;
+}
+.ui-titleicon {
+  flex-grow: 1;
+  max-width: 32px;
+  max-height: 32px;
+}
+.ui-titletext {
+  flex-grow: 2;
+  max-height: 32px;
+  width: auto;
+  font: 12px/32px "Segoe UI", Arial, sans-serif;
+  color: #fff;
+  text-indent: 10px;
+}
+.ui-titlecontrols {
+  max-width: 144px;
+  max-height: 32px;
+}
+.ui-btn {
+  margin: 0;
+  width: 48px;
+  height: 32px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+}
+.ui-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.ui-btn svg {
+  width: 10px;
+  height: 10px;
+}
+.extreme {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 700;
+}
+.flexBox {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.ui-titlecontrolsMin {
+    max-width: 144px;
+    max-height: 32px;
+}
+.minimized {
+    position: absolute;
+    bottom: 0;
+}
+.contentBox {
+    overflow-x: auto;
+    overflow-y: auto;
+}
