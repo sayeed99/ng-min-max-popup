@@ -3,7 +3,7 @@
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.5.
 
 ## Usage
-> This project required angular2-draggable, `npm i angular2-draggable`
+> This project requires angular2-draggable, `npm i angular2-draggable`
 
 > Install : `npm i min-max-popup`
 
