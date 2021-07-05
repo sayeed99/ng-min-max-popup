@@ -2,6 +2,29 @@
 
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.5.
 
+## Usage
+> Install : `npm i min-max-popup`
+
+> In your app module file, import using `import { MinMaxPopupModule } from 'min-max-popup';`
+
+> Add `MinMaxPopupModule` to imports array of app module
+
+> In your html/template file use : `<lib-min-max-popup>.....Your content here..</lib-min-max-popup>`
+
+API Referance | Default
+------------- | -------------
+headerColor   | #0072c6
+titleColor    | #FFF
+iconsColor    | #FFF
+closeHoverColor    | #e81123
+buttonHoverColor   | rgba(255, 255, 255, 0.1)
+width    | 400px
+height   | 500px
+title    | New Window
+initialX    | 200
+initialY   | 200
+contentBackgroundColor    | #FFF
+
 ## Code scaffolding
 
 Run `ng generate component component-name --project min-max-popup` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project min-max-popup`.
