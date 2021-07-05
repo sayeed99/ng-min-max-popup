@@ -1,4 +1,4 @@
-<div class="flexBox" ngDraggable (started)="onDragBegin($event)" [position]="{ x: initialX, y: initialY }" [ngStyle]="{'width' : width, 'zIndex' : currentZ}" *ngIf="!isMinimised">
+<div class="flexBox" ngDraggable (started)="onDragBegin($event)" (endOffset)="endOffset($event)" [position]="{ x: initialX, y: initialY }" [ngStyle]="{'width' : width, 'zIndex' : currentZ}" *ngIf="!isMinimised">
     <div class="ui-titlebar" [ngStyle]="{'background': headerColor, 'width' : width}">
         <div class="ui-titletext" [ngStyle]="{'color': titleColor}">{{title}}</div>
         <div class="ui-titlecontrols">

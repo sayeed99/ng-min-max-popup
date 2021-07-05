@@ -37,8 +37,6 @@ export class MinMaxPopupComponent implements OnInit {
   ngOnInit(): void {
     this.currentInstance = this.popupservice.initModal();
     this.currentZ = this.popupservice.getInitialIndex(this.currentInstance);
-    console.log(this.currentInstance);
-    console.log(this.currentZ)
     if(this.currentInstance != 1) {
       this.leftPlacementValue = ((this.currentInstance-1)*200) + ((this.currentInstance-1)*2);
     } else {
@@ -52,17 +50,20 @@ export class MinMaxPopupComponent implements OnInit {
   }
 
   mouseup(event: any) {
-    console.log(event)
   }
 
   mousedown(event: any) {
-    console.log(event)
     this.initialLeft = event.clientX + 'px';
     this.initialTop = event.clientY + 'px';
   }
 
   onDragBegin(event: any) {
     this.currentZ = this.popupservice.getNewIndex(this.currentInstance);
-    console.log(this.currentZ);
   }
+
+  endOffset(event: any) {
+    this.initialX = event.x;
+    this.initialY = event.y;
+  }
+
 }
