@@ -2,6 +2,8 @@
 
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.5.
 
+## Minimise Maximise Popups
+
 ## Usage
 > This project requires angular2-draggable, `npm i angular2-draggable`
 
