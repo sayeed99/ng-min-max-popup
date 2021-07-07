@@ -11,6 +11,7 @@ build:
   script:
     - npm install
     - npm install netlify-cli 
+    - ./node_modules/@angular/cli/bin/ng build min-max-popup
     - ./node_modules/@angular/cli/bin/ng build
     - echo $NETLIFY_SITE_ID
     - echo $NETLIFY_AUTH_TOKEN
