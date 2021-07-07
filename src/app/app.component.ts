@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MinMaxPopupOpenService } from 'min-max-popup';
+import { MinMaxDirective } from 'min-max-popup';
 import { TestComponent } from './test/test.component'
 
 @Component({
@@ -13,7 +13,7 @@ export class AppComponent {
   inY: number = 200;
 
   constructor(
-    private minmaxservice: MinMaxPopupOpenService
+    private minmaxservice: MinMaxDirective
   ) {}
 
   createComponent() {

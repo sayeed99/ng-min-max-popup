@@ -1,25 +1,26 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MinMaxPopupService } from './min-max-popup.service'
+import { MinMaxPopupService } from './min-max-popup.service';
+import { MinMaxDirective } from './min-max.directive';
+
 
 @Component({
   selector: 'lib-min-max-popup',
   templateUrl: './min-max-popup.component.html',
-  styleUrls: ['./min-max-popup.component.scss']
-
+  styleUrls: ['./min-max-popup.component.scss'],
 })
 export class MinMaxPopupComponent implements OnInit {
 
-  @Input() headerColor: string = "#0072c6";
-  @Input() titleColor: string = "#FFF";
-  @Input() iconsColor: string = "#FFF";
-  @Input() closeHoverColor: string = "#e81123";
-  @Input() buttonHoverColor: string = "rgba(255, 255, 255, 0.1)";
-  @Input() width: string = "400px";
-  @Input() height: string = "500px";
-  @Input() title: string = "New Window";
+  @Input() headerColor: string = '#0072c6';
+  @Input() titleColor: string = '#FFF';
+  @Input() iconsColor: string = '#FFF';
+  @Input() closeHoverColor: string = '#e81123';
+  @Input() buttonHoverColor: string = 'rgba(255, 255, 255, 0.1)';
+  @Input() width: string = '400px';
+  @Input() height: string = '500px';
+  @Input() title: string = 'New Window';
   @Input() initialX: number = 200;
   @Input() initialY: number = 200;
-  @Input() contentBackgroundColor: string = "#FFF";
+  @Input() contentBackgroundColor: string = '#FFF';
   @Input() dockStartX: number = 0;
   @Input() dockStartY: number = 0;
 
@@ -34,13 +35,15 @@ export class MinMaxPopupComponent implements OnInit {
   initialTop: any = '50%';
   currentZ: any = 0;
 
-  constructor(public popupservice: MinMaxPopupService) { }
+  constructor(public popupservice: MinMaxPopupService, public minMaxDirective: MinMaxDirective) {}
 
   ngOnInit(): void {
     this.currentInstance = this.popupservice.initModal();
     this.currentZ = this.popupservice.getInitialIndex(this.currentInstance);
-    if(this.currentInstance != 1) {
-      this.leftPlacementValue = ((this.currentInstance-1)*(200+this.dockStartX)) + ((this.currentInstance-1)*2);
+    if (this.currentInstance != 1) {
+      this.leftPlacementValue =
+        (this.currentInstance - 1) * (200 + this.dockStartX) +
+        (this.currentInstance - 1) * 2;
     } else {
       this.leftPlacementValue = this.dockStartX;
     }
@@ -51,8 +54,7 @@ export class MinMaxPopupComponent implements OnInit {
     this.isMinimised = !this.isMinimised;
   }
 
-  mouseup(event: any) {
-  }
+  mouseup(event: any) {}
 
   mousedown(event: any) {
     this.initialLeft = event.clientX + 'px';
@@ -68,4 +70,7 @@ export class MinMaxPopupComponent implements OnInit {
     this.initialY = event.y;
   }
 
+  remove_me() {
+    this.minMaxDirective.remove(this.currentInstance);
+  }
 }
