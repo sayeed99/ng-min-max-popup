@@ -23,20 +23,18 @@ export class MinMaxDirective {
     private viewContainerReff: ViewContainerRef
   ) {}
 
-  createComponent(componentRender: any) {
+  createComponent(componentRender: any, data: any) {
     let componentFactory = this.CFR.resolveComponentFactory(componentRender);
     const containerRef = this.viewContainerReff;
     let childComponentRef = containerRef.createComponent(componentFactory);
-
     let childComponent:any = childComponentRef.instance;
     childComponent.unique_key = ++this.child_unique_key;
     childComponent.parentRef = this;
-    console.log(childComponent.unique_key);
+    childComponent.data = data
     this.componentsReferences.push(childComponentRef);
   }
 
   remove(key: number) {
-    console.log(key);
     const containerRef = this.viewContainerReff;
 
     if (containerRef.length < 1) return;
@@ -62,7 +60,5 @@ export class MinMaxDirective {
       }
     }
     this.componentsReferences = newData;
-
   }
-
 }

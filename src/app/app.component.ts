@@ -17,6 +17,7 @@ export class AppComponent {
   ) {}
 
   createComponent() {
-    this.minmaxservice.createComponent(TestComponent);
+    let data = {'test' : 'test'};
+    this.minmaxservice.createComponent(TestComponent, data);
   }
 }
