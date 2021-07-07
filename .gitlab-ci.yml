@@ -1,0 +1,20 @@
+stages:
+  - build
+
+build:
+  image: "trion/ng-cli-karma"
+  stage: build
+  tags:
+    - docker
+    - linux
+    - build
+  script:
+    - npm install
+    - npm install netlify-cli 
+    - ./node_modules/@angular/cli/bin/ng build
+    - echo $NETLIFY_SITE_ID
+    - echo $NETLIFY_AUTH_TOKEN
+    - npx netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_AUTH_TOKEN --dir=./dist/matbox --prod
+  artifacts:
+    paths:
+      - dist/matbox
