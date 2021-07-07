@@ -20,7 +20,9 @@ export class MinMaxPopupComponent implements OnInit {
   @Input() initialX: number = 200;
   @Input() initialY: number = 200;
   @Input() contentBackgroundColor: string = "#FFF";
-  
+  @Input() dockStartX: number = 0;
+  @Input() dockStartY: number = 0;
+
   hover: boolean = false;
   hoverMax: boolean = false;
   hoverMin: boolean = false;
@@ -38,9 +40,9 @@ export class MinMaxPopupComponent implements OnInit {
     this.currentInstance = this.popupservice.initModal();
     this.currentZ = this.popupservice.getInitialIndex(this.currentInstance);
     if(this.currentInstance != 1) {
-      this.leftPlacementValue = ((this.currentInstance-1)*200) + ((this.currentInstance-1)*2);
+      this.leftPlacementValue = ((this.currentInstance-1)*(200+this.dockStartX)) + ((this.currentInstance-1)*2);
     } else {
-      this.leftPlacementValue = 0;
+      this.leftPlacementValue = this.dockStartX;
     }
     this.leftPlacement = this.leftPlacementValue + 'px';
   }
