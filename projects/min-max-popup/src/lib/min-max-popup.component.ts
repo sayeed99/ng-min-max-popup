@@ -52,6 +52,7 @@ export class MinMaxPopupComponent implements OnInit {
   minimise() {
     this.isMinimised = !this.isMinimised;
     if(!this.isMinimised) {
+      this.currentZ = this.popupservice.getNewIndex(this.currentInstance);
       this.minMaxDirective.undockComponent(this.currentInstance);
     } else {
       this.minMaxDirective.dockComponent(this.currentInstance)

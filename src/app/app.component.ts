@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MinMaxDirective } from 'min-max-popup';
 import { TestComponent } from './test/test.component'
+import { TestnewComponent } from './testnew/testnew.component'
 
 @Component({
   selector: 'app-root',
@@ -19,5 +20,10 @@ export class AppComponent {
   createComponent() {
     let data = {'test' : 'test'};
     this.minmaxservice.createComponent(TestComponent, data);
+  }
+
+  createComponent2() {
+    let data = {'test' : 'test'};
+    this.minmaxservice.createComponent(TestnewComponent, data);    
   }
 }
