@@ -82,7 +82,7 @@ To open modal call
 ```
 
 ```bash
-To modal api reference 
+Modal api reference 
 ```
 
 API Referance | Default
