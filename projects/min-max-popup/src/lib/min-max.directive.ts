@@ -17,7 +17,7 @@ export class MinMaxDirective {
 
   child_unique_key: number = 0;
   componentsReferences: any[] = [];
-  dockPosition: any[] = [];
+  dockPosition: DockedElement[] = [];
 
   constructor(
     private CFR: ComponentFactoryResolver,
@@ -36,7 +36,53 @@ export class MinMaxDirective {
   }
 
   dockComponent(key: any) {
-    let data: any[] = [];
+    let len = this.dockPosition.length + 1;
+    let docEle = {key: key, position: len};
+    this.dockPosition.push(docEle);
+    let leftPlacementValue = 0;
+    if (this.dockPosition.length != 1) {
+      leftPlacementValue = (this.dockPosition.length - 1) * 200 + (this.dockPosition.length - 1) * 2;
+    } else {
+      leftPlacementValue = 0;
+    }
+    console.log(this.dockPosition)
+    console.log(leftPlacementValue)
+    return leftPlacementValue;
+  }
+
+  undockComponent(key: any) {
+    let newData: DockedElement[] = [];
+    let startChange = 0;
+    let newPos = 0;
+    for(let i = 0; i < this.dockPosition.length; i++) {
+      if(this.dockPosition[i].key == key) {
+        startChange = 0;
+      } else {
+        if(startChange == 1) {
+          let newPos = this.dockPosition[i].position - 1;
+          newData.push({key: key, position: newPos})
+        } else {
+          newData.push(this.dockPosition[i]);
+        }
+      }
+    }
+    this.dockPosition = newData;
+  }
+
+  getDockX(key: any) {
+    let dockedPos = 1;
+    let leftPlacementValue = 0;
+    for(let i = 0; i < this.dockPosition.length; i++) {
+      if(this.dockPosition[i].key == key) {
+        dockedPos = i + 1;
+      }
+    }
+    if (dockedPos != 1) {
+      leftPlacementValue = (dockedPos - 1) * 200 + (dockedPos - 1) * 2;
+    } else {
+      leftPlacementValue = 0;
+    }
+    return leftPlacementValue  + 'px';
   }
 
   remove(key: number) {
@@ -66,4 +112,9 @@ export class MinMaxDirective {
     }
     this.componentsReferences = newData;
   }
+}
+
+export interface DockedElement {
+  key: any;
+  position: number;
 }

@@ -51,6 +51,11 @@ export class MinMaxPopupComponent implements OnInit {
 
   minimise() {
     this.isMinimised = !this.isMinimised;
+    if(!this.isMinimised) {
+      this.minMaxDirective.undockComponent(this.currentInstance);
+    } else {
+      this.minMaxDirective.dockComponent(this.currentInstance)
+    }
   }
 
   mouseup(event: any) {}
@@ -71,6 +76,7 @@ export class MinMaxPopupComponent implements OnInit {
 
   remove_me() {
     // this.popupservice.destroyModal(this.currentInstance);
+    this.minMaxDirective.undockComponent(this.currentInstance);
     this.minMaxDirective.remove(this.currentInstance);
   }
 }

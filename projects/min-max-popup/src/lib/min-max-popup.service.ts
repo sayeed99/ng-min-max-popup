@@ -5,7 +5,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class MinMaxPopupService {
-  // constructor(private minmaxservice: MinMaxDirective) {}
   constructor() {}
 
   count: any[] = [];
