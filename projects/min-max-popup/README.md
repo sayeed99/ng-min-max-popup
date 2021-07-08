@@ -1,19 +1,88 @@
-# MinMaxPopup
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.5.
+# Min Max Angular 12 Popup
 
-## Minimise Maximise Popups
+Min max popup is an angular 13 floating window modal.
+
+## Installation
+
+Use the node package manager [npm](https://www.npmjs.com/) to install minmax.
+
+This package requires angular2-draggable.
+
+```bash
+npm i angular2-draggable
+npm i min-max-popup
+```
 
 ## Usage
-> This project requires angular2-draggable, `npm i angular2-draggable`
 
-> Install : `npm i min-max-popup`
+```bash
+In your app module : 
+import { MinMaxPopupModule, MinMaxDirective } from 'min-max-popup';
 
-> In your app module file, import using `import { MinMaxPopupModule } from 'min-max-popup';`
+Add MinMaxPopupModule to your imports array: 
+  imports: [
+    .....,
+    MinMaxPopupModule,
+    .....,
+  ],
 
-> Add `MinMaxPopupModule` to imports array of app module
+Add MinMaxDirective to your providers array: 
+  providers: [
+    .....,
+    MinMaxDirective,
+    .....,
+  ],
+```
 
-> In your html/template file use : `<lib-min-max-popup>.....Your content here..</lib-min-max-popup>`
+```bash
+Create a component and wrap your components html with  //TestComponent
+<lib-min-max-popup>......</lib-min-max-popup>
+```
+```bash
+Add your newly created component to entryComponents array : 
+  entryComponents: [
+    ....,
+    TestComponent
+    ....,
+  ],
+```
+```bash
+In your new components ts file import Input from angular : //TestComponent
+import { Input } from '@angular/core';
+```
+```bash
+In your new components ts file add the following in your component class : //TestComponent
+export class TestComponent implements OnInit {
+  @Input() data: any = {}; //add this
+  @Input() parentRef: any; //add this
+  @Input() unique_key: any; //add this
+```
+```bash
+In your new components class add the following function to close the modal : //TestComponent
+  close() {
+    this.parentRef.remove(this.unique_key)
+  }
+```
+```bash
+In the component from where you want to open modal do import your modal component (TestComponent) and MinMaxDirective :
+
+import { MinMaxDirective } from 'min-max-popup';
+import { TestComponent } from './test.component'
+
+
+initialize minmaxdirective in constructor : 
+  constructor(
+    private minmaxservice: MinMaxDirective
+  ) {}
+```
+```bash
+To open modal call 
+    this.minmaxservice.createComponent(TestComponent, data); //TestComponent is your modal component and data is the data you want to pass to modal.
+```
+
+```bash
+To modal api reference 
 
 API Referance | Default
 ------------- | -------------
@@ -28,6 +97,15 @@ title    | New Window
 initialX    | 200
 initialY   | 200
 contentBackgroundColor    | #FFF
+```
+
+
+```bash
+Full modal wrapper would look like : 
+<lib-min-max-popup headerColor="#000" closeHoverColor="#FFF" buttonHoverColor="#fff" iconsColor="#FFF"  title="TEST" titleColor="#FFF" contentBackgroundColor="#FFF"  width="500px" height="600px" [initialX]="inX" [initialY]="inY">.......</lib-min-max-popup>
+
+```
+
 
 ## Code scaffolding
 

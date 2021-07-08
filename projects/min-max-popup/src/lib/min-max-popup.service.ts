@@ -77,7 +77,6 @@ export class MinMaxPopupService {
   public destroyModal(counter: any) {
     this.count[counter] = 0;
     let key = this.keys[counter];
-    // this.minmaxservice.remove(key);
     this.keys[counter] = 0;
     this.parentRef[counter] = 0;
   }

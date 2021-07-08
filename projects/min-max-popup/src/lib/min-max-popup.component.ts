@@ -42,10 +42,9 @@ export class MinMaxPopupComponent implements OnInit {
     this.currentZ = this.popupservice.getInitialIndex(this.currentInstance);
     if (this.currentInstance != 1) {
       this.leftPlacementValue =
-        (this.currentInstance - 1) * (200 + this.dockStartX) +
-        (this.currentInstance - 1) * 2;
+        (this.currentInstance - 1) * 200 + (this.currentInstance - 1) * 2;
     } else {
-      this.leftPlacementValue = this.dockStartX;
+      this.leftPlacementValue = 0;
     }
     this.leftPlacement = this.leftPlacementValue + 'px';
   }
@@ -71,6 +70,7 @@ export class MinMaxPopupComponent implements OnInit {
   }
 
   remove_me() {
+    // this.popupservice.destroyModal(this.currentInstance);
     this.minMaxDirective.remove(this.currentInstance);
   }
 }

@@ -17,6 +17,7 @@ export class MinMaxDirective {
 
   child_unique_key: number = 0;
   componentsReferences: any[] = [];
+  dockPosition: any[] = [];
 
   constructor(
     private CFR: ComponentFactoryResolver,
@@ -30,8 +31,12 @@ export class MinMaxDirective {
     let childComponent:any = childComponentRef.instance;
     childComponent.unique_key = ++this.child_unique_key;
     childComponent.parentRef = this;
-    childComponent.data = data
+    childComponent.data = data;
     this.componentsReferences.push(childComponentRef);
+  }
+
+  dockComponent(key: any) {
+    let data: any[] = [];
   }
 
   remove(key: number) {
