@@ -45,8 +45,6 @@ export class MinMaxDirective {
     } else {
       leftPlacementValue = 0;
     }
-    console.log(this.dockPosition)
-    console.log(leftPlacementValue)
     return leftPlacementValue;
   }
 
