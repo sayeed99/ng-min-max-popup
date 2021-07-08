@@ -1,7 +1,7 @@
 
 # Min Max Angular 12 Popup
 
-Min max popup is an angular 13 floating window modal.
+Min max popup is an angular 12 floating window modal.
 
 ## Installation
 
@@ -83,6 +83,7 @@ To open modal call
 
 ```bash
 To modal api reference 
+```
 
 API Referance | Default
 ------------- | -------------
@@ -97,7 +98,6 @@ title    | New Window
 initialX    | 200
 initialY   | 200
 contentBackgroundColor    | #FFF
-```
 
 
 ```bash
