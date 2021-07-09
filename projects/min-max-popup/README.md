@@ -100,6 +100,7 @@ initialY   | 200
 contentBackgroundColor    | #FFF
 
 
+
 ```bash
 Full modal wrapper would look like : 
 <lib-min-max-popup headerColor="#000" closeHoverColor="#FFF" buttonHoverColor="#fff" iconsColor="#FFF"  title="TEST" titleColor="#FFF" contentBackgroundColor="#FFF"  width="500px" height="600px" [initialX]="inX" [initialY]="inY">.......</lib-min-max-popup>
