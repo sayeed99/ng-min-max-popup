@@ -10,7 +10,7 @@
         </div>
     </div>
     <div [ngStyle]="{'width' : width, 'height': height, 'background': contentBackgroundColor}" class="contentBox">
-        <ng-content></ng-content>
+        {{currentInstance}}<ng-content></ng-content>
     </div>
 </div>
 <div class="minimized"  *ngIf="isMinimised" [ngStyle]="{'left' : minMaxDirective.getDockX(currentInstance), 'zIndex' : 99998}">

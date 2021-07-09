@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MinMaxPopupService } from './min-max-popup.service';
 import { MinMaxDirective } from './min-max.directive';
 
 @Component({
@@ -9,18 +8,17 @@ import { MinMaxDirective } from './min-max.directive';
 })
 export class MinMaxNavigateComponent implements OnInit {
 
-  constructor(public popupservice: MinMaxPopupService, public minMaxDirective: MinMaxDirective) {}
+  constructor(public minMaxDirective: MinMaxDirective) {}
   currentInstance: any = 0;
 
   ngOnInit(): void {
-    this.currentInstance = this.popupservice.initModal();
   }
 
   moveLeft() {
-
+      this.minMaxDirective.moveDockerComponent(-1)
   }
 
   moveRight() {
-
+      this.minMaxDirective.moveDockerComponent(1)
   }
 }

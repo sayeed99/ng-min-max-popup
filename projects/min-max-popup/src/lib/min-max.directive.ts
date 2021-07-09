@@ -8,6 +8,7 @@ import {
   Component,
   ViewRef,
 } from '@angular/core';
+import { MinMaxNavigateComponent } from './min-max-navigate.component'
 
 @Directive({
   selector: '[libMinMax]'
@@ -18,6 +19,8 @@ export class MinMaxDirective {
   child_unique_key: number = 0;
   componentsReferences: any[] = [];
   dockPosition: DockedElement[] = [];
+  navigatorAdded: number = 0;
+  moveVal: number = 0;
 
   constructor(
     private CFR: ComponentFactoryResolver,
@@ -25,6 +28,9 @@ export class MinMaxDirective {
   ) {}
 
   createComponent(componentRender: any, data: any) {
+    if(!this.navigatorAdded) {
+      this.createNavigator();
+    }
     let componentFactory = this.CFR.resolveComponentFactory(componentRender);
     const containerRef = this.viewContainerReff;
     let childComponentRef = containerRef.createComponent(componentFactory);
@@ -33,6 +39,17 @@ export class MinMaxDirective {
     childComponent.parentRef = this;
     childComponent.data = data;
     this.componentsReferences.push(childComponentRef);
+    console.log(containerRef.get(0))
+  }
+
+  createNavigator() {
+    this.navigatorAdded = 1;
+    let componentFactory = this.CFR.resolveComponentFactory(MinMaxNavigateComponent);
+    const containerRef = this.viewContainerReff;
+    let childComponentRef = containerRef.createComponent(componentFactory);
+    let childComponent:any = childComponentRef.instance;
+    childComponent.unique_key = -1;
+    childComponent.parentRef = this;
   }
 
   dockComponent(key: any) {
@@ -41,9 +58,9 @@ export class MinMaxDirective {
     this.dockPosition.push(docEle);
     let leftPlacementValue = 0;
     if (this.dockPosition.length != 1) {
-      leftPlacementValue = (this.dockPosition.length - 1) * 200 + (this.dockPosition.length - 1) * 2;
+      leftPlacementValue = (this.dockPosition.length - 1) * 200 + ((this.dockPosition.length - 1) * 2) + 32;
     } else {
-      leftPlacementValue = 0;
+      leftPlacementValue = 32;
     }
     return leftPlacementValue;
   }
@@ -67,6 +84,16 @@ export class MinMaxDirective {
     this.dockPosition = newData;
   }
 
+  moveDockerComponent(direction: any) {
+    if(direction == 1) {
+      this.moveVal = this.moveVal + 100;
+    } else {
+      if(this.moveVal > 0)
+        this.moveVal = this.moveVal - 100;
+    }
+    console.log(this.moveVal)
+  }
+
   getDockX(key: any) {
     let dockedPos = 1;
     let leftPlacementValue = 0;
@@ -76,9 +103,9 @@ export class MinMaxDirective {
       }
     }
     if (dockedPos != 1) {
-      leftPlacementValue = (dockedPos - 1) * 200 + (dockedPos - 1) * 2;
+      leftPlacementValue = (dockedPos - 1) * (200 + (dockedPos - 1) * 2) + 32 + this.moveVal;
     } else {
-      leftPlacementValue = 0;
+      leftPlacementValue = 32 + this.moveVal;
     }
     return leftPlacementValue  + 'px';
   }
@@ -100,7 +127,7 @@ export class MinMaxDirective {
       }
     }
 
-    containerRef.remove(vcr);
+    containerRef.remove(vcr+1);
 
     let newData: any[] = [];
     for(i = 0; i < this.componentsReferences.length; i++) {
@@ -109,6 +136,10 @@ export class MinMaxDirective {
       }
     }
     this.componentsReferences = newData;
+    if(this.componentsReferences.length < 1) {
+      containerRef.remove(0);
+      this.navigatorAdded = 0;
+    }
   }
 }
 
