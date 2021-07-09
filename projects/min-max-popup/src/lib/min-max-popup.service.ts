@@ -30,7 +30,6 @@ export class MinMaxPopupService {
     }
     this.lastIndex++;
     this.zIndex[counter] = this.lastIndex;
-    console.log(counter)
     return counter;
   }
 

@@ -21,6 +21,7 @@ export class MinMaxDirective {
   dockPosition: DockedElement[] = [];
   navigatorAdded: number = 0;
   moveVal: number = 0;
+  navigatorReferences: any[] = [];
 
   constructor(
     private CFR: ComponentFactoryResolver,
@@ -39,7 +40,6 @@ export class MinMaxDirective {
     childComponent.parentRef = this;
     childComponent.data = data;
     this.componentsReferences.push(childComponentRef);
-    console.log(containerRef.get(0))
   }
 
   createNavigator() {
@@ -50,6 +50,7 @@ export class MinMaxDirective {
     let childComponent:any = childComponentRef.instance;
     childComponent.unique_key = -1;
     childComponent.parentRef = this;
+    this.navigatorReferences.push(childComponentRef);
   }
 
   dockComponent(key: any) {
@@ -91,7 +92,6 @@ export class MinMaxDirective {
       if(this.moveVal > 0)
         this.moveVal = this.moveVal - 100;
     }
-    console.log(this.moveVal)
   }
 
   getDockX(key: any) {
@@ -127,7 +127,8 @@ export class MinMaxDirective {
       }
     }
 
-    containerRef.remove(vcr+1);
+    let index = this.viewContainerReff.indexOf(componentRef.hostView)
+    containerRef.remove(index);
 
     let newData: any[] = [];
     for(i = 0; i < this.componentsReferences.length; i++) {
@@ -136,9 +137,13 @@ export class MinMaxDirective {
       }
     }
     this.componentsReferences = newData;
+
     if(this.componentsReferences.length < 1) {
-      containerRef.remove(0);
+      let navRef: any = this.navigatorReferences[0];
+      let index2 = this.viewContainerReff.indexOf(navRef.hostView)
+      this.viewContainerReff.remove(index2);
       this.navigatorAdded = 0;
+      this.navigatorReferences.pop();
     }
   }
 }
