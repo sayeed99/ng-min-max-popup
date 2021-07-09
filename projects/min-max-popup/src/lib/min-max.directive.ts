@@ -87,10 +87,10 @@ export class MinMaxDirective {
 
   moveDockerComponent(direction: any) {
     if(direction == 1) {
+      if(this.moveVal != 0)
       this.moveVal = this.moveVal + 100;
     } else {
-      if(this.moveVal > 0)
-        this.moveVal = this.moveVal - 100;
+      this.moveVal = this.moveVal - 100;
     }
   }
 
@@ -103,7 +103,7 @@ export class MinMaxDirective {
       }
     }
     if (dockedPos != 1) {
-      leftPlacementValue = (dockedPos - 1) * (200 + (dockedPos - 1) * 2) + 32 + this.moveVal;
+      leftPlacementValue = (dockedPos - 1) * 200 + ((dockedPos - 1) * 2) + 32 + this.moveVal;
     } else {
       leftPlacementValue = 32 + this.moveVal;
     }
