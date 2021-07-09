@@ -13,7 +13,7 @@
         <ng-content></ng-content>
     </div>
 </div>
-<div class="minimized"  *ngIf="isMinimised" [ngStyle]="{'left' : minMaxDirective.getDockX(currentInstance), 'zIndex' : 1000}">
+<div class="minimized"  *ngIf="isMinimised" [ngStyle]="{'left' : minMaxDirective.getDockX(currentInstance), 'zIndex' : 99998}">
     <div class="ui-titlebar" [ngStyle]="{'background': headerColor, 'width' : '200px'}">
         <div class="ui-titletext" [ngStyle]="{'color': titleColor}">{{title}}</div>
         <div class="ui-titlecontrolsMin">

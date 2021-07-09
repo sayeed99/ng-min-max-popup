@@ -12,7 +12,7 @@ export class MinMaxPopupService {
   keys: any[] = [];
   parentRef: any[] = [];
   indexer: any = 0;
-  lastIndex: any = 900;
+  lastIndex: any = 99999;
 
   public initModal() {
     let hasAdded: boolean = false;
@@ -70,6 +70,7 @@ export class MinMaxPopupService {
     if (max > maxEle) {
       this.zIndex[counter] = max + 1;
     }
+    this.lastIndex = this.zIndex[counter];
     return this.zIndex[counter];
   }
 
