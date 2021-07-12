@@ -98,7 +98,7 @@ title    | New Window
 initialX    | 200
 initialY   | 200
 contentBackgroundColor    | #FFF
-
+allowOutOfBounds    | false
 
 
 ```bash
