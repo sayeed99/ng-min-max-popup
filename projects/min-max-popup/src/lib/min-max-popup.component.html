@@ -10,10 +10,10 @@
         </div>
     </div>
     <div [ngStyle]="{'width' : width, 'height': height, 'background': contentBackgroundColor}" class="contentBox">
-        {{currentInstance}}<ng-content></ng-content>
+        <ng-content></ng-content>
     </div>
 </div>
-<div class="minimized"  *ngIf="isMinimised" [ngStyle]="{'left' : minMaxDirective.getDockX(currentInstance), 'zIndex' : 99998}">
+<div class="minimized"  *ngIf="isMinimised" [ngStyle]="{'left' : minMaxDirective.getDockX(currentInstance), 'zIndex' : 999998}">
     <div class="ui-titlebar" [ngStyle]="{'background': headerColor, 'width' : '200px'}">
         <div class="ui-titletext" [ngStyle]="{'color': titleColor}">{{title}}</div>
         <div class="ui-titlecontrolsMin">
