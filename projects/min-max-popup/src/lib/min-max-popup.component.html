@@ -1,4 +1,4 @@
-<div class="flexBox" (click)="onDragBegin($event)" ngDraggable [handle]="titleHandler" (started)="onDragBegin($event)" (endOffset)="endOffset($event)" [position]="{ x: initialX, y: initialY }" [ngStyle]="{'width' : width, 'zIndex' : currentZ}"  [ngClass]="!isMinimised ? '' : 'hidden'">
+<div class="flexBox" (click)="onDragBegin($event)" ngDraggable [handle]="titleHandler" (started)="onDragBegin($event)" (endOffset)="endOffset($event)" [position]="{ x: initialX, y: initialY }" [ngStyle]="{'width' : width, 'zIndex' : currentZ, marginLeft: marginLeft, marginTop: marginTop}"  [ngClass]="!isMinimised ? '' : 'hidden'">
     <div class="ui-titlebar" #titleHandler [ngStyle]="{'background': headerColor, 'width' : width}">
         <div class="ui-titletext" [ngStyle]="{'color': titleColor}">{{title}}</div>
         <div class="ui-titlecontrols">

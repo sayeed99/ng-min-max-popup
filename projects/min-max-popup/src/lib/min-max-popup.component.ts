@@ -18,8 +18,8 @@ export class MinMaxPopupComponent implements OnInit {
   @Input() width: string = '400px';
   @Input() height: string = '500px';
   @Input() title: string = 'New Window';
-  @Input() initialX: number = 200;
-  @Input() initialY: number = 200;
+  @Input() initialX: number = 0;
+  @Input() initialY: number = 0;
   @Input() contentBackgroundColor: string = '#FFF';
   @Input() dockStartX: number = 0;
   @Input() dockStartY: number = 0;
@@ -34,6 +34,8 @@ export class MinMaxPopupComponent implements OnInit {
   initialLeft: any = '50%';
   initialTop: any = '50%';
   currentZ: any = 0;
+  marginLeft: any = '0px';
+  marginTop: any = '0px';
 
   constructor(public popupservice: MinMaxPopupService, public minMaxDirective: MinMaxDirective) {}
 
@@ -47,6 +49,11 @@ export class MinMaxPopupComponent implements OnInit {
       this.leftPlacementValue = 0;
     }
     this.leftPlacement = this.leftPlacementValue + 'px';
+    let marL: any = this.width.replace(/[^0-9]/g,'');
+    let marT: any = this.height.replace(/[^0-9]/g,'');
+    this.marginLeft = -(marL/2) + 'px';
+    this.marginTop = -(marT/2) + 'px';
+    console.log(this.marginLeft + ':' + this.marginTop);
   }
 
   minimise() {
@@ -73,6 +80,7 @@ export class MinMaxPopupComponent implements OnInit {
   endOffset(event: any) {
     this.initialX = event.x;
     this.initialY = event.y;
+    console.log(event.x + ":" + event.y);
   }
 
   remove_me() {
