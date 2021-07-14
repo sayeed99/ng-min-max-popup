@@ -2,7 +2,7 @@
   "name": "min-max-popup",
   "homepage": "https://ngmodal.netlify.app",
   "repository": "sayeed99/ng-min-max-popup",
-  "version": "2.3.0",
+  "version": "2.3.3",
   "peerDependencies": {
     "@angular/common": "^12.0.5",
     "@angular/core": "^12.0.5",

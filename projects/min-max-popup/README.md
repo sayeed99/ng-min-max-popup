@@ -36,6 +36,17 @@ Add MinMaxDirective to your providers array:
 ```
 
 ```bash
+In your app component.ts import ViewContainerRef from angular and add to constructor : 
+
+
+  constructor(
+    .....,
+    public viewContainerRef: ViewContainerRef,
+    ......
+  ) {}
+```
+
+```bash
 Create a component and wrap your components html with  //TestComponent
 <lib-min-max-popup>......</lib-min-max-popup>
 ```

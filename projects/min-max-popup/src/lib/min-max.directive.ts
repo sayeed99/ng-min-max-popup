@@ -7,8 +7,14 @@ import {
   ViewChild,
   Component,
   ViewRef,
+  ApplicationRef,
 } from '@angular/core';
 import { MinMaxNavigateComponent } from './min-max-navigate.component'
+
+
+@Injectable({
+  providedIn: 'root',
+})
 
 @Directive({
   selector: '[libMinMax]'
@@ -25,15 +31,28 @@ export class MinMaxDirective {
 
   constructor(
     private CFR: ComponentFactoryResolver,
-    private viewContainerReff: ViewContainerRef
+    private viewContainerReff: ViewContainerRef,
+    private applicationRef: ApplicationRef
   ) {}
+
+  getRootViewContainerRef(): ViewContainerRef {
+    const appInstance = this.applicationRef.components[0].instance;
+
+    if (!appInstance.viewContainerRef) {
+      const appName = this.applicationRef.componentTypes[0].name;
+      throw new Error(`Missing 'viewContainerRef' declaration in ${appName} constructor`);
+    }
+
+    return appInstance.viewContainerRef;
+  }
+
 
   createComponent(componentRender: any, data: any) {
     if(!this.navigatorAdded) {
       this.createNavigator();
     }
     let componentFactory = this.CFR.resolveComponentFactory(componentRender);
-    const containerRef = this.viewContainerReff;
+    const containerRef = this.getRootViewContainerRef();
     let childComponentRef = containerRef.createComponent(componentFactory);
     let childComponent:any = childComponentRef.instance;
     childComponent.unique_key = ++this.child_unique_key;
@@ -45,7 +64,7 @@ export class MinMaxDirective {
   createNavigator() {
     this.navigatorAdded = 1;
     let componentFactory = this.CFR.resolveComponentFactory(MinMaxNavigateComponent);
-    const containerRef = this.viewContainerReff;
+    const containerRef = this.getRootViewContainerRef();
     let childComponentRef = containerRef.createComponent(componentFactory);
     let childComponent:any = childComponentRef.instance;
     childComponent.unique_key = -1;
@@ -111,7 +130,7 @@ export class MinMaxDirective {
   }
 
   remove(key: number) {
-    const containerRef = this.viewContainerReff;
+    const containerRef = this.getRootViewContainerRef();
 
     if (containerRef.length < 1) return;
 
@@ -127,7 +146,7 @@ export class MinMaxDirective {
       }
     }
 
-    let index = this.viewContainerReff.indexOf(componentRef.hostView)
+    let index = containerRef.indexOf(componentRef.hostView)
     containerRef.remove(index);
 
     let newData: any[] = [];
@@ -140,8 +159,8 @@ export class MinMaxDirective {
 
     if(this.componentsReferences.length < 1) {
       let navRef: any = this.navigatorReferences[0];
-      let index2 = this.viewContainerReff.indexOf(navRef.hostView)
-      this.viewContainerReff.remove(index2);
+      let index2 = containerRef.indexOf(navRef.hostView)
+      containerRef.remove(index2);
       this.navigatorAdded = 0;
       this.navigatorReferences.pop();
     }
