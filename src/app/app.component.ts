@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
 import { MinMaxDirective } from 'min-max-popup';
 import { TestComponent } from './test/test.component'
 import { TestnewComponent } from './testnew/testnew.component'
@@ -14,7 +14,8 @@ export class AppComponent {
   inY: number = 200;
 
   constructor(
-    private minmaxservice: MinMaxDirective
+    private minmaxservice: MinMaxDirective,
+    public viewContainerRef: ViewContainerRef
   ) {}
 
   createComponent() {
