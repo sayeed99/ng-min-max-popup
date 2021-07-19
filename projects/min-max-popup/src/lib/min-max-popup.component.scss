@@ -4,6 +4,7 @@
   height: 32px;
   user-select: none;
   cursor: default;
+  max-width: 100%;
 }
 .ui-titleicon {
   flex-grow: 1;
@@ -46,6 +47,7 @@
   overflow: hidden;
   top: 50%;
   left: 50%;
+  max-width: 90% !important;
 }
 .ui-titlecontrolsMin {
     max-width: 144px;
@@ -58,6 +60,7 @@
 .contentBox {
     overflow-x: auto;
     overflow-y: auto;
+    max-width: 100%;
 }
 .hidden {
   display: none;
